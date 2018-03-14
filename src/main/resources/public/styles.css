@@ -1,0 +1,61 @@
+html, body {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #555;
+    font-size: 16px;
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.top-container {
+    height: 45vh;
+    width: 100%;
+    background-size: cover;
+    background: url("resources/img/Elegant_Background-12.jpg") no-repeat center;
+}
+
+.top-container #project-title {
+    position: relative;
+    text-align: center;
+    color: #fffd;
+    top:50%;
+    transform: translateY(-100%);
+    font-size: 70px;
+}
+
+.top-container #product-query {
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+    top:50%;
+    transform: translateY(-100%);
+    font-size: 25px;
+    height: 45px;
+    background-color: #fff2;
+    color: white;
+    text-align: center;
+    border-color:white;
+}
+
+.navbar {
+    position: fixed;
+    left:0;
+    right:0;
+    background-color: #0006;
+}
+
+.navbar-inverse a {
+    color: #fffd !important;
+}
+
+.content-container {
+    height: 100%;
+}
