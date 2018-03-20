@@ -4,6 +4,10 @@
 
 An intelligent shopping assistant, who helps you to find best and most suitable to your needs offers.
 
+## Endpoints
+
+- `/search?q=SEARCH_PHRASE` - search for offers related to given SEARCH_PHRASE
+
 ## Developers guide
 
 ### Secrets maintenance
