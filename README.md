@@ -10,6 +10,12 @@ An intelligent shopping assistant, who helps you to find best and most suitable 
 
 ## Developers guide
 
+# Postgres initialization
+```sql
+CREATE USER root WITH PASSWORD 'advisor';
+CREATE DATABASE advisor OWNER root;
+```
+
 ### Secrets maintenance
 
 All secrets (passwords, web api keys etc.) are stored in `src/main/resources/secrets.properties` file. This file is 

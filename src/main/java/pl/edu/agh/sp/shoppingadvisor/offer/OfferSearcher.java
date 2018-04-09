@@ -4,5 +4,5 @@ import java.util.Collection;
 
 public interface OfferSearcher {
 
-    Collection<OfferViewModel> searchFor(String searchPhrase);
+    Collection<Offer> searchFor(String searchPhrase);
 }

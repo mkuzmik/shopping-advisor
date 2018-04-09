@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.edu.agh.sp.shoppingadvisor.allegro.AllegroClient;
+import pl.edu.agh.sp.shoppingadvisor.offer.OfferRepository;
+import pl.edu.agh.sp.shoppingadvisor.offer.OfferSearcher;
 
 @SpringBootApplication
 public class ShoppingAdvisorApplication {
@@ -16,11 +18,7 @@ public class ShoppingAdvisorApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(AllegroClient allegroClient) {
-		return args -> {
-			DoGetItemsListResponse response = allegroClient.getItems("whatever");
-
-			System.out.println("done");
-		};
+	CommandLineRunner init(OfferSearcher offerSearcher, OfferRepository offerRepository) {
+		return args -> offerSearcher.searchFor("whatever").forEach(offerRepository::save);
 	}
 }
