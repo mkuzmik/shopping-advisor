@@ -19,7 +19,7 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public Collection<OfferViewModel> searchForOffers(@RequestParam("q") String searchPhrase) {
+    public Collection<Offer> searchForOffers(@RequestParam("q") String searchPhrase) {
         return offerSearcher.searchFor(searchPhrase);
     }
 }

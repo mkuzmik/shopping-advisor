@@ -3,11 +3,11 @@ package pl.edu.agh.sp.shoppingadvisor.allegro;
 import api.allegro.wsdl.ItemsListType;
 import api.allegro.wsdl.PhotoInfoType;
 import api.allegro.wsdl.PriceInfoType;
-import pl.edu.agh.sp.shoppingadvisor.offer.OfferViewModel;
+import pl.edu.agh.sp.shoppingadvisor.offer.Offer;
 
 public class AllegroOfferFactory {
 
-    public static OfferViewModel createOfferFrom(ItemsListType itemsListType) {
+    public static Offer createOfferFrom(ItemsListType itemsListType) {
 
         String photoUrl = itemsListType
                 .getPhotosInfo()
@@ -24,6 +24,6 @@ public class AllegroOfferFactory {
 
         String url = "https://allegro.pl/show_item.php?item=" + itemsListType.getItemId();
 
-        return new OfferViewModel(itemsListType.getItemTitle(), photoUrl, url, price);
+        return new Offer(itemsListType.getItemTitle(), photoUrl, url, price);
     }
 }

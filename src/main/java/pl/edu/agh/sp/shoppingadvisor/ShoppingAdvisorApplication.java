@@ -7,6 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.edu.agh.sp.shoppingadvisor.allegro.AllegroClient;
+import pl.edu.agh.sp.shoppingadvisor.offer.Offer;
+import pl.edu.agh.sp.shoppingadvisor.offer.OfferRepository;
+import pl.edu.agh.sp.shoppingadvisor.offer.OfferSearcher;
+import pl.edu.agh.sp.shoppingadvisor.user.User;
+import pl.edu.agh.sp.shoppingadvisor.user.UserRepository;
+
+import java.util.List;
 
 @SpringBootApplication
 public class ShoppingAdvisorApplication {
@@ -16,11 +23,14 @@ public class ShoppingAdvisorApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(AllegroClient allegroClient) {
+	CommandLineRunner init(OfferSearcher offerSearcher, OfferRepository offerRepository, UserRepository userRepository) {
 		return args -> {
-			DoGetItemsListResponse response = allegroClient.getItems("whatever");
+		    User user = new User("user@mail.com");
+		    userRepository.save(user);
 
-			System.out.println("done");
-		};
+		    offerSearcher.searchFor("whatever").stream()
+                    .peek(offer -> offer.setOwner(user))
+                    .forEach(offerRepository::save);
+        };
 	}
 }
