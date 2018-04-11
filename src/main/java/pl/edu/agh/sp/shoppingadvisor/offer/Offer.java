@@ -1,10 +1,12 @@
 package pl.edu.agh.sp.shoppingadvisor.offer;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import pl.edu.agh.sp.shoppingadvisor.user.User;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "offer", schema = "public")
 public class Offer {
 
     private String title;
@@ -16,6 +18,10 @@ public class Offer {
 
     private float price;
 
+    @ManyToOne
+    @JoinColumn(name="owner")
+    private User owner;
+
     /*JPA*/
     public Offer() {
     }
@@ -25,6 +31,14 @@ public class Offer {
         this.imgUrl = imgUrl;
         this.url = url;
         this.price = price;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public String getTitle() {
