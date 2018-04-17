@@ -41,7 +41,9 @@
 
         <div id="offer-list">
             <div ng-repeat="p in products" class="product">
-                <img class="prodImg" ng-src="{{p.imgUrl}}">
+                <div class="prodImgContainer">
+                    <img class="prodImg" ng-src="{{p.imgUrl}}">
+                </div>
                 <div class="prodDescription">
                     <a class="prodTitle" ng-href="{{p.url}}">{{p.title}}</a>
                     <span class="prodPrice">{{p.price}} zł</span>
