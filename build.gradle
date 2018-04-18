@@ -92,6 +92,9 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 
+	// jsoup HTML parser library @ https://jsoup.org/
+	compile 'org.jsoup:jsoup:1.11.3'
+
 	jaxb "com.sun.xml.bind:jaxb-xjc:2.1.7"
 }
 
