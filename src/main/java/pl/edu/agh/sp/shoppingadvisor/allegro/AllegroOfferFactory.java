@@ -5,6 +5,8 @@ import api.allegro.wsdl.PhotoInfoType;
 import api.allegro.wsdl.PriceInfoType;
 import pl.edu.agh.sp.shoppingadvisor.offer.Offer;
 
+import java.util.Objects;
+
 public class AllegroOfferFactory {
 
     public static Offer createOfferFrom(ItemsListType itemsListType) {
@@ -12,6 +14,8 @@ public class AllegroOfferFactory {
         String photoUrl = itemsListType
                 .getPhotosInfo()
                 .getItem().stream()
+                .filter(PhotoInfoType::isPhotoIsMain)
+                .filter(photo -> Objects.equals(photo.getPhotoSize(), "large"))
                 .findFirst()
                 .orElse(new PhotoInfoType())
                 .getPhotoUrl();
