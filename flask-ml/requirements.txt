@@ -1,2 +1,6 @@
 flask
 flask_restful
+scikit-learn
+pandas
+scipy
+numpy
