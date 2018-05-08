@@ -30,13 +30,16 @@ html, body {
     font-size: 70px;
 }
 
-.top-container #product-query {
-    width:50%;
-    margin-left: auto;
-    margin-right: auto;
+.top-container #product-query-form {
     position:relative;
     top:50%;
     transform: translateY(-100%);
+}
+
+.top-container #product-query {
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
     font-size: 25px;
     height: 45px;
     background-color: #fff2;
@@ -50,6 +53,7 @@ html, body {
     left:0;
     right:0;
     background-color: #0006;
+    border-radius:0;
 }
 
 .navbar-inverse a {
@@ -58,4 +62,41 @@ html, body {
 
 .content-container {
     height: 100%;
+}
+
+
+#offer-list .product {
+    height:160px;
+    border-bottom:1px solid #ccc;
+    display:flex;
+    align-items:center;
+}
+
+#offer-list .product:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+#offer-list .product .prodImgContainer {
+    height:100%;
+    width:250px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding:5px 0px 5px 30px;
+}
+
+#offer-list .product .prodImg {
+    max-height:100%;
+    max-width: 100%;
+}
+
+#offer-list .product .prodDescription {
+    margin-left:20px;
+}
+
+
+#offer-list .product .prodDescription .prodPrice {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
 }
