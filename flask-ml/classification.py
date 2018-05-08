@@ -19,7 +19,7 @@ def classify(training_data, test_data):
     X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 
     clf = MultinomialNB().fit(X_train_tfidf, y_train)
-    return clf.predict(count_vect.transform(map(lambda data: data['description'], test_data)))
+    return clf.predict_proba(count_vect.transform(map(lambda data: data['description'], test_data)))
 
 def build_features(dataset):
     tfidf = TfidfVectorizer(sublinear_tf=True, min_df=1, norm='l2', encoding='latin-1', ngram_range=(1, 2), stop_words='english')

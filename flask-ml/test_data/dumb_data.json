@@ -1,0 +1,31 @@
+{
+  "training_data": [
+    {
+      "description": "Selling TV",
+      "rate": 1
+    },
+    {
+      "description": "I sell TV set",
+      "rate": 1
+    },
+    {
+      "description": "A lot of furnitures to sell",
+      "rate": 0
+    },
+    {
+      "description": "selling furnitures",
+      "rate": 0
+    }
+  ],
+  "test_data": [
+    {
+      "description": "TV for sell"
+    },
+    {
+      "description": "I sell furnitures"
+    },
+    {
+      "description": "selling TV. I can also sell my furnitures"
+    }
+  ]
+}

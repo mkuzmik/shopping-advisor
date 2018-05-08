@@ -12,7 +12,7 @@ class HelloWorld(Resource):
         training_data = request.json['training_data']
         test_data = request.json['test_data']
         # print_most_correlated_terms(training_data)
-        return classify(training_data, test_data).ravel().tolist()
+        return classify(training_data, test_data).ravel().tolist()[1::2]
 
 api.add_resource(HelloWorld, '/')
 
