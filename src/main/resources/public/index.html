@@ -7,11 +7,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Title</title>
 </head>
 <body>
-    <div ng-app="searchApp" ng-controller="searchController">
+    <div ng-app="searchApp" ng-controller="OfferCRUDCtrl">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -33,13 +34,14 @@
         <div class="top-container">
             <div class="container content-container">
                 <h1 id="project-title">SHOPPING ADVISOR</h1>
-                <form ng-submit="sendQuery()" id="product-query-form">
+                <form ng-submit="learning ? searchSingleOffer() : searchOffers()" id="product-query-form">
                     <input ng-model="query" type="text" class="form-control" id="product-query" placeholder="Search...">
                 </form>
+                <p id="learning-checkbox-par"><input ng-model="learning" type="checkbox">Learning</p>
             </div>
         </div>
 
-        <div id="offer-list">
+        <div ng-show="!isLearningOn" class="offer-list">
             <div ng-repeat="p in products" class="product">
                 <div class="prodImgContainer">
                     <img class="prodImg" ng-src="{{p.imgUrl}}">
@@ -49,6 +51,23 @@
                     <span class="prodPrice">{{p.price}} zł</span>
                 </div>
             </div>
+        </div>
+
+        <div ng-show="isLearningOn && productToAssess != null" class="offer-list">
+            <div class="product">
+                <div class="prodImgContainer">
+                    <img class="prodImg" ng-src="{{productToAssess.imgUrl}}">
+                </div>
+                <div class="prodDescription">
+                    <a class="prodTitle" ng-href="{{productToAssess.url}}">{{productToAssess.title}}</a>
+                    <span class="prodPrice">{{productToAssess.price}} zł</span>
+                </div>
+                <div class="prodAssessButtons">
+                    <div id="button-good" ng-click="assessOfferGood()"><i class="far fa-thumbs-up"></i></div>
+                    <div id="button-bad" ng-click="assessOfferBad()"><i class="far fa-thumbs-down"></i></div>
+                </div>
+            </div>
+            <!--<iframe ng-src="{{productToAssess.url}}" id="offer-preview"></iframe>-->
         </div>
     </div>
 

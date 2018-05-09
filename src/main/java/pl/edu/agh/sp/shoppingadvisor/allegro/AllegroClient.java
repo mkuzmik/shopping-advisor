@@ -26,10 +26,11 @@ public class AllegroClient extends WebServiceGatewaySupport {
         this.environment = environment;
     }
 
-    public DoGetItemsListResponse getItems(String searchPhrase) {
+    public DoGetItemsListResponse getItems(String searchPhrase, int offset) {
         DoGetItemsListRequest request = new DoGetItemsListRequest();
         request.setCountryId(1);
         request.setWebapiKey(environment.getProperty("allegro.api.key"));
+        request.setResultOffset(offset);
 
         ArrayOfFilteroptionstype filters = new ArrayOfFilteroptionstype();
         FilterOptionsType filter = new FilterOptionsType();

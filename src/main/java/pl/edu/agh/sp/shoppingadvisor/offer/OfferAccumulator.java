@@ -15,6 +15,11 @@ public class OfferAccumulator implements OfferSearcher {
 
     @Override
     public Collection<Offer> searchFor(String searchPhrase) {
+        return searchFor(searchPhrase, 0);
+    }
+
+    @Override
+    public Collection<Offer> searchFor(String searchPhrase, int offset) {
         return offerSearchers.stream()
                 .flatMap(offerSearcher -> offerSearcher.searchFor(searchPhrase).stream())
                 .collect(Collectors.toList());
