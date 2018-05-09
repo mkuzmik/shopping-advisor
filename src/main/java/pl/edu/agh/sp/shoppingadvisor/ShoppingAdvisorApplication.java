@@ -22,15 +22,15 @@ public class ShoppingAdvisorApplication {
 		SpringApplication.run(ShoppingAdvisorApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner init(OfferSearcher offerSearcher, OfferRepository offerRepository, UserRepository userRepository) {
-		return args -> {
-		    User user = new User("user@mail.com");
-		    userRepository.save(user);
-
-		    offerSearcher.searchFor("whatever").stream()
-                    .peek(offer -> offer.setOwner(user))
-                    .forEach(offerRepository::save);
-        };
-	}
+//	@Bean
+//	CommandLineRunner init(OfferSearcher offerSearcher, OfferRepository offerRepository, UserRepository userRepository) {
+//		return args -> {
+//		    User user = new User("user@mail.com");
+//		    userRepository.save(user);
+//
+//		    offerSearcher.searchFor("whatever").stream()
+//                    .peek(offer -> offer.setOwner(user))
+//                    .forEach(offerRepository::save);
+//        };
+//	}
 }
