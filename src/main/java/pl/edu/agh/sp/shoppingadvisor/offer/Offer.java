@@ -18,6 +18,8 @@ public class Offer {
 
     private float price;
 
+    private int feedback;
+
     @ManyToOne
     @JoinColumn(name="owner")
     private User owner;
@@ -73,21 +75,31 @@ public class Offer {
         this.price = price;
     }
 
+    public int getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(int feedback) {
+        this.feedback = feedback;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Offer offer = (Offer) o;
         return Float.compare(offer.price, price) == 0 &&
+                feedback == offer.feedback &&
                 Objects.equals(title, offer.title) &&
                 Objects.equals(imgUrl, offer.imgUrl) &&
-                Objects.equals(url, offer.url);
+                Objects.equals(url, offer.url) &&
+                Objects.equals(owner, offer.owner);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(title, imgUrl, url, price);
+        return Objects.hash(title, imgUrl, url, price, feedback, owner);
     }
 
     @Override
@@ -97,6 +109,8 @@ public class Offer {
                 ", imgUrl='" + imgUrl + '\'' +
                 ", url='" + url + '\'' +
                 ", price=" + price +
+                ", feedback=" + feedback +
+                ", owner=" + owner +
                 '}';
     }
 }

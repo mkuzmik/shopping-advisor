@@ -5,27 +5,25 @@
       "rate": 1
     },
     {
-      "description": "I sell TV set",
+      "description": "I sell TV",
       "rate": 1
     },
     {
-      "description": "A lot of furnitures to sell",
+      "description": "pilot for my tv",
       "rate": 0
     },
     {
-      "description": "selling furnitures",
+      "description": "selling tv cables",
+      "rate": 0
+    },
+    {
+      "description": "selling my computer",
       "rate": 0
     }
   ],
   "test_data": [
     {
-      "description": "TV for sell"
-    },
-    {
-      "description": "I sell furnitures"
-    },
-    {
-      "description": "selling TV. I can also sell my furnitures"
+      "description": "selling something else"
     }
   ]
 }
