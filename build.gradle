@@ -85,6 +85,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.springframework.ws:spring-ws-core")
 	compile 'io.rest-assured:rest-assured:3.0.7'
+	// https://mvnrepository.com/artifact/io.vavr/vavr
+	compile group: 'io.vavr', name: 'vavr', version: '0.9.2'
 	compile(files(genJaxb.classesDir).builtBy(genJaxb))
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')

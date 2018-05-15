@@ -1,5 +1,8 @@
 package pl.edu.agh.sp.shoppingadvisor.scraper;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AllegroScraper extends Scraper {
 
     @Override

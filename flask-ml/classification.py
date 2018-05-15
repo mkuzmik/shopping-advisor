@@ -11,7 +11,7 @@ def classify(training_data, test_data):
     df = pd.DataFrame(training_data)
 
     X_train = df.description
-    y_train = df.rate
+    y_train = df.feedback
 
     count_vect = CountVectorizer()
     X_train_counts = count_vect.fit_transform(df.description)
@@ -25,7 +25,7 @@ def build_features(dataset):
     tfidf = TfidfVectorizer(sublinear_tf=True, min_df=1, norm='l2', encoding='latin-1', ngram_range=(1, 2), stop_words='english')
     df = pd.DataFrame(dataset)
     features = tfidf.fit_transform(df.description).toarray()
-    labels = df.rate
+    labels = df.feedback
     return features, labels, tfidf
 
 def print_most_correlated_terms(dataset):

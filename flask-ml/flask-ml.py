@@ -9,10 +9,14 @@ api = Api(app)
 
 class HelloWorld(Resource):
     def post(self):
-        training_data = request.json['training_data']
-        test_data = request.json['test_data']
+        training_data = request.json['training_offers']
+        test_data = request.json['test_offers']
         # print_most_correlated_terms(training_data)
-        return classify(training_data, test_data).ravel().tolist()[1::2]
+        output = classify(training_data, test_data).ravel().tolist()[1::2]
+        result = {'asserted_offers': []}
+        for data, prediction in zip(test_data, output):
+            result['asserted_offers'].append({'url': data['url'], 'feedback': prediction})
+        return result
 
 api.add_resource(HelloWorld, '/')
 

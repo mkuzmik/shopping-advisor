@@ -13,15 +13,18 @@ public class FlaskService {
     @Value("${flask.ml.origin}")
     private String flaskOrigin;
 
-    public Hello getHello() {
-        Hello hello = new Hello();
+    public RecommendationOutput recommend(RecommendationInput recommendationInput) {
+        RecommendationOutput recommendationOutput = new RecommendationOutput();
         try {
-            String response = RestAssured.get(new URL(flaskOrigin)).asString();
             ObjectMapper objectMapper = new ObjectMapper();
-            hello = objectMapper.readValue(response, Hello.class);
+            String response = RestAssured.given()
+                    .contentType("application/json")
+                    .body(objectMapper.writeValueAsString(recommendationInput))
+                    .post(new URL(flaskOrigin)).asString();
+            recommendationOutput = objectMapper.readValue(response, RecommendationOutput.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return hello;
+        return recommendationOutput;
     }
 }
