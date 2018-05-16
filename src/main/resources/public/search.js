@@ -176,9 +176,10 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
                 email: $scope.emailAddress
             };
 
-            OfferCRUDService.sendProductPreferences($scope.productPreferences).then (function success(response){
+            OfferCRUDService.sendProductPreferences($scope.productPreferences).then(function success(response){
                     $scope.message = 'Product preferences sent!';
                     $scope.errorMessage = '';
+                    $scope.sentSuccessfully = true;
                     console.log('Product preferences sent!');
                 },
                 function error(response){
