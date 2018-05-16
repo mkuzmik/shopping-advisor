@@ -186,6 +186,9 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
                     $scope.message = '';
                     console.log('Error sending product preferences!');
                 });
+
+            $scope.currentMode = $scope.MODE_SEARCHING_OFFERS;
+            $scope.query = '';
         };
 
 
