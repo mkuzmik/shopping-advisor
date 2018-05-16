@@ -14,39 +14,57 @@ app.service('OfferCRUDService', [ '$http', function($http) {
             method : 'GET',
             url : 'search?q=' + query
         });
-    }
+    };
 
     this.searchOffersWithOffset = function searchOffersWithOffset(query, offset) {
         return $http({
             method : 'GET',
             url : 'search?q=' + query + '&o=' + offset
         });
-    }
+    };
 
-    this.assessOffer = function assessOffer(url, rating) {
+    this.sendProductPreferences = function sendProductPreferences(preferences) {
         return $http({
             method : 'POST',
-            url : 'offers',
-            data : {
-                url : url,
-                rating: rating
-            }
-        });
-    }
+            url : 'preferences',
+            data : preferences
+        })
+    };
 
 } ]);
 
 
 app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
     function ($scope, OfferCRUDService) {
-        $scope.learning = false;
-        $scope.isLearningOn = false;
         $scope.productToAssess = null;
         $scope.searchedProductOffset = 0;
+        $scope.numberOfAssessedOffers = 0;
+        $scope.NUMBER_OF_OFFERS_TO_ASSESS = 10;
+
+        $scope.MODE_SEARCHING_OFFERS = 'mode_searching_offers';
+        $scope.MODE_GETTING_EMAIL = 'mode_getting_email';
+        $scope.MODE_LEARNING = 'mode_learning';
+        $scope.currentMode = $scope.MODE_LEARNING;
+
+        $scope.productPreferences = {
+            user: null,
+            offers: []
+        };
+
+        $scope.submitQuery = function () {
+            switch ($scope.currentMode) {
+                case $scope.MODE_LEARNING:
+                    $scope.searchSingleOffer();
+                    return;
+                case $scope.MODE_SEARCHING_OFFERS:
+                    $scope.searchOffers();
+                    return;
+                default:
+                    return;
+            }
+        };
 
         $scope.searchOffers = function () {
-            $scope.isLearningOn = $scope.learning;
-
             OfferCRUDService.searchOffers($scope.query).then(
                 function success(response) {
                     $scope.products = response.data;
@@ -65,8 +83,6 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
         };
 
         $scope.searchOffersWithOffset = function () {
-            $scope.isLearningOn = $scope.learning;
-
             OfferCRUDService.searchOffersWithOffset($scope.query, $scope.searchedProductOffset).then(
                 function success(response) {
                     $scope.products = response.data;
@@ -85,7 +101,6 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
         };
 
         $scope.searchSingleOffer = function () {
-            $scope.isLearningOn = $scope.learning;
             $scope.searchedProductNum = 0;
             $scope.searchedProductOffset = 0;
             $scope.searchedProducts = null;
@@ -94,35 +109,33 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
             $scope.loadNextProductToAssess();
         };
 
-        $scope.assessOffer = function () {
-            if ($scope.productToAssess != null && $scope.rating != null) {
-                OfferCRUDService.assessOffer($scope.productToAssess.url, $scope.rating)
-                    .then (function success(response){
-                            $scope.message = 'Offer assessed!';
-                            $scope.errorMessage = '';
-                        },
-                        function error(response){
-                            $scope.errorMessage = 'Error assessing offer!';
-                            $scope.message = '';
-                        });
-            }
-            else {
-                $scope.errorMessage = 'Please assess an offer!';
-                $scope.message = '';
-            }
-        }
-
         $scope.assessOfferGood = function () {
-            $scope.rating = 5;
-            $scope.assessOffer();
-            $scope.loadNextProductToAssess();
-        }
+            $scope.rating = 1;
+            $scope.firstTimeAssessingStuff();
+        };
 
         $scope.assessOfferBad = function () {
             $scope.rating = 0;
-            $scope.assessOffer();
-            $scope.loadNextProductToAssess();
-        }
+            $scope.firstTimeAssessingStuff();
+        };
+
+        $scope.firstTimeAssessingStuff = function () {
+            $scope.numberOfAssessedOffers++;
+            $scope.productPreferences.offers.push({
+                title: $scope.productToAssess.title,
+                imgUrl: $scope.productToAssess.imgUrl,
+                url: $scope.productToAssess.url,
+                price: $scope.productToAssess.price,
+                feedback: $scope.rating
+            });
+
+
+            if ($scope.numberOfAssessedOffers >= $scope.NUMBER_OF_OFFERS_TO_ASSESS) {
+                $scope.currentMode = $scope.MODE_GETTING_EMAIL;
+            } else {
+                $scope.loadNextProductToAssess();
+            }
+        };
 
         $scope.loadNextProductToAssess = function () {
             if ($scope.searchedProducts === null || $scope.searchedProducts.length <= $scope.searchedProductNum) {
@@ -156,5 +169,24 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
                 $scope.productToAssess = $scope.searchedProducts[$scope.searchedProductNum];
                 $scope.searchedProductNum++;
             }
-        }
+        };
+
+        $scope.submitProductPreferences = function () {
+            $scope.productPreferences.user = {
+                email: $scope.emailAddress
+            };
+
+            OfferCRUDService.sendProductPreferences($scope.productPreferences).then (function success(response){
+                    $scope.message = 'Product preferences sent!';
+                    $scope.errorMessage = '';
+                    console.log('Product preferences sent!');
+                },
+                function error(response){
+                    $scope.errorMessage = 'Error sending product preferences!';
+                    $scope.message = '';
+                    console.log('Error sending product preferences!');
+                });
+        };
+
+
     }]);
