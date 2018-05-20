@@ -45,7 +45,7 @@ public class RecommendationService {
 
   public Collection<EvaluatedOffer> getRandomOffersToEvaluate(int amount, String searchPhrase) {
     List<Offer> offers = new ArrayList<>(offerSearcher.searchFor(searchPhrase));
-    return IntStream.of(amount).boxed().map(n -> {
+    return IntStream.range(0,amount).boxed().map(n -> {
       Collections.shuffle(offers);
       return EvaluatedOffer.of(offers.get(0));
     }).collect(Collectors.toList());
