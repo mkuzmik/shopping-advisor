@@ -15,6 +15,8 @@ public class User {
     @Id
     private String email;
 
+    private String query;
+
     @OneToMany(mappedBy = "owner")
     private List<Offer> prefferedOffers;
 
@@ -31,6 +33,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 
     public List<Offer> getPrefferedOffers() {
