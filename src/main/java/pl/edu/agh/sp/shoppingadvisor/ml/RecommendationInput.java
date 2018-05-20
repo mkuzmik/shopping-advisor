@@ -1,5 +1,7 @@
 package pl.edu.agh.sp.shoppingadvisor.ml;
 
+import pl.edu.agh.sp.shoppingadvisor.offer.EvaluatedOffer;
+
 import java.util.Collection;
 
 public class RecommendationInput {
@@ -25,6 +27,19 @@ public class RecommendationInput {
   }
 
   public static class Offer {
+
+    public static Offer of(pl.edu.agh.sp.shoppingadvisor.offer.Offer offer) {
+      Offer inputOffer = new Offer();
+      inputOffer.setUrl(offer.getUrl());
+      inputOffer.setFeedback(offer.getFeedback());
+      return inputOffer;
+    }
+
+    public static Offer of(EvaluatedOffer offer) {
+      Offer inputOffer = new Offer();
+      inputOffer.setUrl(offer.getUrl());
+      return inputOffer;
+    }
 
     private String url;
 
