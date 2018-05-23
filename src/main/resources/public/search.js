@@ -173,7 +173,8 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
 
         $scope.submitProductPreferences = function () {
             $scope.productPreferences.user = {
-                email: $scope.emailAddress
+                email: $scope.emailAddress,
+                query: $scope.query
             };
 
             OfferCRUDService.sendProductPreferences($scope.productPreferences).then(function success(response){

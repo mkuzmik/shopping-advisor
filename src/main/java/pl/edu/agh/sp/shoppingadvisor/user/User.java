@@ -1,5 +1,6 @@
 package pl.edu.agh.sp.shoppingadvisor.user;
 
+import pl.edu.agh.sp.shoppingadvisor.offer.EvaluatedOffer;
 import pl.edu.agh.sp.shoppingadvisor.offer.Offer;
 
 import javax.persistence.Entity;
@@ -15,8 +16,13 @@ public class User {
     @Id
     private String email;
 
+    private String query;
+
     @OneToMany(mappedBy = "owner")
     private List<Offer> prefferedOffers;
+
+    @OneToMany(mappedBy = "owner")
+    private List<EvaluatedOffer> evaluatedOffers;
 
     public User() {
     }
@@ -33,8 +39,24 @@ public class User {
         this.email = email;
     }
 
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
     public List<Offer> getPrefferedOffers() {
         return prefferedOffers;
+    }
+
+    public List<EvaluatedOffer> getEvaluatedOffers() {
+        return evaluatedOffers;
+    }
+
+    public void setEvaluatedOffers(List<EvaluatedOffer> evaluatedOffers) {
+        this.evaluatedOffers = evaluatedOffers;
     }
 
     public void setPrefferedOffers(List<Offer> prefferedOffers) {

@@ -9,7 +9,6 @@ import java.util.Collection;
 public class OfferController {
 
     private final OfferSearcher offerSearcher;
-    private int i = 0;
 
     @Autowired
     public OfferController(OfferSearcher offerSearcher) {
