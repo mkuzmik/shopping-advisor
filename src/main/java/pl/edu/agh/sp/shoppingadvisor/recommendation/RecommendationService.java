@@ -36,6 +36,7 @@ public class RecommendationService {
   public void recommendFor(User user) {
     List<Offer> learningOffers = user.getPrefferedOffers();
     Collection<EvaluatedOffer> randomOffersToEvaluate = getRandomOffersToEvaluate(20, user.getQuery(), learningOffers);
+    learningOffers = processLearningOffers(learningOffers);
     Collection<EvaluatedOffer> evaluatedOffers = flaskService.evaluate(learningOffers, randomOffersToEvaluate, user);
     evaluatedOffers.forEach(evaluatedOfferRepository::save);
   }
@@ -51,6 +52,29 @@ public class RecommendationService {
       Collections.shuffle(offers);
       return EvaluatedOffer.of(offers.get(0));
     }).collect(Collectors.toList());
+  }
+
+  private List<Offer> processLearningOffers(List<Offer> offers) {
+    Collections.shuffle(offers);
+
+    long badFeedbackAmount = offers.stream().filter(offer -> offer.getFeedback() == 0).count();
+    long goodFeedbackAmount = offers.stream().filter(offer -> offer.getFeedback() == 1).count();
+
+    long learningAmount = goodFeedbackAmount < badFeedbackAmount ? goodFeedbackAmount : badFeedbackAmount;
+
+    List<Offer> goodFeedbackOffers = offers.stream()
+            .filter(offer -> offer.getFeedback() == 1)
+            .limit(learningAmount)
+            .collect(Collectors.toList());
+
+    List<Offer> badFeedbackOffers = offers.stream()
+            .filter(offer -> offer.getFeedback() == 0)
+            .limit(learningAmount)
+            .collect(Collectors.toList());
+
+    ArrayList<Offer> resultOffers = new ArrayList<>(goodFeedbackOffers);
+    resultOffers.addAll(badFeedbackOffers);
+    return resultOffers;
   }
 
 }
