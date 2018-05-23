@@ -37,6 +37,18 @@
                 <form ng-submit="submitQuery()" id="product-query-form">
                     <input ng-model="query" type="text" class="form-control" id="product-query" placeholder="Search...">
                 </form>
+                <p ng-show="currentMode === MODE_LEARNING"
+                   class="offers-left-par">Pozostało do pozytywnej oceny: <span>{{
+                        NUMBER_OF_OFFERS_TO_ASSESS - numberOfGoodOffers > 0
+                        ? NUMBER_OF_OFFERS_TO_ASSESS - numberOfGoodOffers
+                        : 0
+                    }}</span></p>
+                <p ng-show="currentMode === MODE_LEARNING"
+                   class="offers-left-par">Pozostało do negatywnej oceny: <span>{{
+                        NUMBER_OF_OFFERS_TO_ASSESS - numberOfBadOffers > 0
+                        ? NUMBER_OF_OFFERS_TO_ASSESS - numberOfBadOffers
+                        : 0
+                    }}</span></p>
             </div>
         </div>
 
@@ -63,6 +75,7 @@
                 </div>
                 <div class="prodAssessButtons">
                     <div id="button-good" ng-click="assessOfferGood()"><i class="far fa-thumbs-up"></i></div>
+                    <div id="button-ignore" ng-click="assessOfferIgnore()"><i class="fas fa-question"></i></div>
                     <div id="button-bad" ng-click="assessOfferBad()"><i class="far fa-thumbs-down"></i></div>
                 </div>
             </div>

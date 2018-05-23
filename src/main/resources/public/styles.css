@@ -15,7 +15,6 @@ html, body {
 
 
 .top-container {
-    height: 350px;
     width: 100%;
     background-size: cover;
     background: url("resources/img/Elegant_Background-12.jpg") no-repeat center;
@@ -24,13 +23,13 @@ html, body {
 .top-container #project-title {
     color: #fffd;
     font-size: 70px;
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 40px;
 }
 
 .top-container #product-query-form {
     width:50%;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
 }
 
 .top-container #product-query {
@@ -49,6 +48,19 @@ html, body {
     color:#fff6;
 }
 
+.top-container .offers-left-par {
+    color:white;
+}
+
+.top-container .offers-left-par:last-of-type {
+    margin-bottom:30px;
+}
+
+.top-container .offers-left-par > span {
+    font-size:22px;
+    font-weight:bold;
+}
+
 .navbar {
     position: fixed;
     left:0;
@@ -62,7 +74,6 @@ html, body {
 }
 
 .content-container {
-    height: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -125,6 +136,16 @@ html, body {
 .offer-list .product .prodAssessButtons #button-good:hover {
     color:white;
     background-color: green;
+}
+
+.offer-list .product .prodAssessButtons #button-ignore {
+    color:grey;
+    margin-left: 40px;
+}
+
+.offer-list .product .prodAssessButtons #button-ignore:hover {
+    color:white;
+    background-color: grey;
 }
 
 .offer-list .product .prodAssessButtons #button-bad {
