@@ -56,3 +56,7 @@ transaction-logs
 secrets.yml
 .gradletasknamecache
 .sts4-cache
+out/
+
+secrets.properties
+*__pycache__*

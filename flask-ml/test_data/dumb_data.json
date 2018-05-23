@@ -1,0 +1,29 @@
+{
+  "training_data": [
+    {
+      "description": "Selling TV",
+      "rate": 1
+    },
+    {
+      "description": "I sell TV",
+      "rate": 1
+    },
+    {
+      "description": "pilot for my tv",
+      "rate": 0
+    },
+    {
+      "description": "selling tv cables",
+      "rate": 0
+    },
+    {
+      "description": "selling my computer",
+      "rate": 0
+    }
+  ],
+  "test_data": [
+    {
+      "description": "selling something else"
+    }
+  ]
+}

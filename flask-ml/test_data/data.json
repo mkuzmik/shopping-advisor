@@ -1,0 +1,24 @@
+{
+  "training_data": [
+    {
+      "description": "This is a 65-inch television with internet capability, ideal for watching streaming television, videos, and much more. With its impressive size, it will enhance even the largest of living or family rooms. The LCD screen provides vividly clear pictures, so you will be able to watch movies and sports with equal clarity. The internet functionality ensures that you do not need to add any extra devices to watch your favorite web-based programming.",
+      "rate": 1
+    },
+    {
+      "description": "LCD TV Screen Protection Panel For 40 inch 3mm Thick Non Glare AG-N40P From Japan with Tracking",
+      "rate": 1
+    },
+    {
+      "description": "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. aler. Our Top of the Line TV's at ultra-high contrast (all models are Smart Ultra HD (4k) Samsung or LG Model Donors) with our MPET Picture Quality Calibration & MVVP Software/Hardware Upgrade for the best possible viewing in outdoor sunlight conditions. One (1) Year Replacement Limited Warranty for Residential and Commercial application and an additional one (1) Year (pro-rated 50/50) Limited Warranty for Residential Use Only.",
+      "rate": 0
+    }
+  ],
+  "test_data": [
+    {
+      "description": "Pyle Preview 32’’ LED TV - HD Flat Screen TV - Features: Full HD 1080p Support - Widescreen Hi-Res Display - Selectable Multi-Viewing Display Modes - Built-in Full Range Stereo Speakers - USB Flash Memory Reader - Digital Media File Playback Support - Stream Audio and View Image Collections - Input Interface: (3) x HDMI, YPbPr (Component Video), RCA (L/R) Audio, VGA/PC, PC Audio, RF (Antenna) - Output Interface: Optical (Digital) Audio, Headphones - Removable Base Stands for Wall Mounting - Includes Full Function Remote Control - V-Chip, Closed Caption & Sleep Timer Functions - Side Panel Button Controls - Works with Mac & PC - -Technical Specs: - Screen Size: 32.0’’ -inch (Diagonal) - Screen Display Type: D-LED Backlight - Display Resolution: 1366 x 768 - Signal Support: 1080p, 1080i, 720p, 480p, 480i - Display Modes: 16:9, 4:3, Zoom, Cinema - Viewing Angle: 178 Degree Vertical, 178 Degree Horizontal - Speaker Power: (2) 8 Watt, 8O - T.H.D. +N: <10% @1KHz - Refresh Rate: 60Hz - TV Tuner: ATSC/NTSC - Response Time: 20ms - Max. Color: 16.7M - Contrast: 4000:1 (25,000:1 Dynamic) - Brightness: 250 cd/m2 - Maximum USB Flash Support: 512GB - Digital Media File Support: MP3, JPG - Universal VESA Mounting Compatibility (100mmx100mm) - Power: 100/240V, 50/60Hz - Remote Control Battery Operated, Requires (2) x ‘AAA’, Included - Total Monitor Display Panel Dimensions (L x W x H): 29.1’’ x 3.0’’ x 17.2’’ - Base Plate Bracket Width: 7.7’’ - Pyle Model: PTVLED32."
+    },
+    {
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+  ]
+}

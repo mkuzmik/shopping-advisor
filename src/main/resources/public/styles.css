@@ -1,0 +1,171 @@
+html, body {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #555;
+    font-size: 16px;
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.top-container {
+    height: 350px;
+    width: 100%;
+    background-size: cover;
+    background: url("resources/img/Elegant_Background-12.jpg") no-repeat center;
+}
+
+.top-container #project-title {
+    color: #fffd;
+    font-size: 70px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.top-container #product-query-form {
+    width:50%;
+    margin-bottom: 70px;
+}
+
+.top-container #product-query {
+    font-size: 25px;
+    height: 45px;
+    background-color: #fff2;
+    color: white;
+    text-align: center;
+    border-color:white;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.top-container #product-query::placeholder {
+    color:#fff6;
+}
+
+.navbar {
+    position: fixed;
+    left:0;
+    right:0;
+    background-color: #0006;
+    border-radius:0;
+}
+
+.navbar-inverse a {
+    color: #fffd !important;
+}
+
+.content-container {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.offer-list .product {
+    height:160px;
+    border-bottom:1px solid #ccc;
+    display:flex;
+    align-items:center;
+}
+
+.offer-list .product:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.offer-list .product .prodImgContainer {
+    height:100%;
+    width:250px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding:5px 0px 5px 30px;
+}
+
+.offer-list .product .prodImg {
+    max-height:100%;
+    max-width: 100%;
+}
+
+.offer-list .product .prodDescription {
+    margin-left:20px;
+}
+
+
+.offer-list .product .prodDescription .prodPrice {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.offer-list .product .prodAssessButtons {
+    display:flex;
+    font-size:60px;
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.offer-list .product .prodAssessButtons > div {
+    padding: 10px 20px;
+    border-radius: 50%;
+}
+
+.offer-list .product .prodAssessButtons #button-good {
+    color:green;
+}
+
+.offer-list .product .prodAssessButtons #button-good:hover {
+    color:white;
+    background-color: green;
+}
+
+.offer-list .product .prodAssessButtons #button-bad {
+    color:red;
+    margin-left: 40px;
+}
+
+.offer-list .product .prodAssessButtons #button-bad:hover {
+    color:white;
+    background-color: red;
+}
+
+.email-getter > p {
+    font-size: 35px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.email-getter #email-input {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
+    height: 50px;
+    text-align: center;
+    border-radius: 0;
+}
+
+.email-getter #email-getter-submit {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 20px;
+    width: 25%;
+    height: 60px;
+    font-size: 30px;
+    background-color: #eee;
+    border: solid #aaa 1px;
+    border-radius: 0;
+}
+
+.email-getter #email-getter-submit:hover {
+    background-color:#ddd;
+}
