@@ -1,5 +1,6 @@
 package pl.edu.agh.sp.shoppingadvisor.offer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.edu.agh.sp.shoppingadvisor.user.User;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class EvaluatedOffer {
 
   @ManyToOne
   @JoinColumn(name="owner")
+  @JsonIgnore
   private User owner;
 
   public EvaluatedOffer() {
