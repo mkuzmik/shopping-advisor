@@ -1,29 +1,30 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_selection import chi2
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_selection import chi2
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import LinearSVC
 
 
 def classify(training_data, test_data):
-    df = pd.DataFrame(training_data)
+    df = pd.DataFrame(training_data + test_data)
 
     X_train = df.description
     y_train = df.feedback
 
     count_vect = CountVectorizer()
-    X_train_counts = count_vect.fit_transform(df.description)
+    X_counts = count_vect.fit_transform(df.description)
     tfidf_transformer = TfidfTransformer()
-    X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
+    X_tfidf = tfidf_transformer.fit_transform(X_counts)
 
-    # clf = LogisticRegression(random_state=0).fit(X_train_tfidf, y_train)
-    clf = MultinomialNB().fit(X_train_tfidf, y_train)
-    return clf.predict_proba(count_vect.transform(map(lambda data: data['description'], test_data)))
+    X_train = X_tfidf[:len(training_data)]
+    X_test = X_tfidf[len(training_data):]
+    y_train = df.feedback.tolist()[:len(training_data)]
+
+    clf = LogisticRegression().fit(X_train, y_train)
+    # clf = MultinomialNB().fit(X_train_tfidf, y_train)
+    return clf.predict_proba(X_test)
 
 def build_features(dataset):
     tfidf = TfidfVectorizer(sublinear_tf=True, min_df=1, norm='l2', encoding='latin-1', ngram_range=(1, 2), stop_words='english')
