@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.edu.agh.sp.shoppingadvisor.allegro.AllegroClient;
+import pl.edu.agh.sp.shoppingadvisor.notifications.mail.EmailMessage;
+import pl.edu.agh.sp.shoppingadvisor.notifications.mail.EmailService;
 import pl.edu.agh.sp.shoppingadvisor.offer.Offer;
 import pl.edu.agh.sp.shoppingadvisor.offer.OfferRepository;
 import pl.edu.agh.sp.shoppingadvisor.offer.OfferSearcher;
@@ -22,15 +24,15 @@ public class ShoppingAdvisorApplication {
 		SpringApplication.run(ShoppingAdvisorApplication.class, args);
 	}
 
-//	@Bean
-//	CommandLineRunner init(OfferSearcher offerSearcher, OfferRepository offerRepository, UserRepository userRepository) {
-//		return args -> {
-//		    User user = new User("user@mail.com");
-//		    userRepository.save(user);
-//
-//		    offerSearcher.searchFor("whatever").stream()
-//                    .peek(offer -> offer.setOwner(user))
-//                    .forEach(offerRepository::save);
-//        };
-//	}
+	@Bean
+	CommandLineRunner init(EmailService emailService) {
+		return args -> {
+			EmailMessage emailMessage = new EmailMessage();
+			emailMessage.setTo("mateusz.kuzmik1@gmail.com");
+			emailMessage.setSubject("Welcome to Shopping Advisor app");
+			emailMessage.setText("Welcome message");
+
+			emailService.send(emailMessage);
+		};
+	}
 }
