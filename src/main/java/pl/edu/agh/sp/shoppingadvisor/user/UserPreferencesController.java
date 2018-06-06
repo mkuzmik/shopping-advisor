@@ -8,6 +8,7 @@ import pl.edu.agh.sp.shoppingadvisor.offer.EvaluatedOffer;
 import pl.edu.agh.sp.shoppingadvisor.offer.OfferRepository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,8 @@ public class UserPreferencesController {
   @GetMapping
   public List<EvaluatedOffer> getEvaluatedOffers(@RequestParam("mail") String mail) {
     Optional<User> maybeUser = userRepository.findById(mail);
-    return maybeUser.isPresent() ? maybeUser.get().getEvaluatedOffers() : new ArrayList<>();
+    List<EvaluatedOffer> evaluatedOffers = maybeUser.isPresent() ? maybeUser.get().getEvaluatedOffers() : new ArrayList<>();
+    evaluatedOffers.sort(Comparator.comparing(EvaluatedOffer::getEvaluation));
+    return evaluatedOffers;
   }
 }

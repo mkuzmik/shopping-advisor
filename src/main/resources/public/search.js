@@ -38,13 +38,20 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
     function ($scope, OfferCRUDService) {
         $scope.productToAssess = null;
         $scope.searchedProductOffset = 0;
-        $scope.numberOfAssessedOffers = 0;
-        $scope.NUMBER_OF_OFFERS_TO_ASSESS = 10;
+        $scope.numberOfGoodOffers = 0;
+        $scope.numberOfBadOffers = 0;
+        $scope.NUMBER_OF_OFFERS_TO_ASSESS = 6;
 
         $scope.MODE_SEARCHING_OFFERS = 'mode_searching_offers';
         $scope.MODE_GETTING_EMAIL = 'mode_getting_email';
         $scope.MODE_LEARNING = 'mode_learning';
         $scope.currentMode = $scope.MODE_LEARNING;
+
+        $scope.assessedOffers = {
+            good: [],
+            bad: [],
+            ignored: []
+        };
 
         $scope.productPreferences = {
             user: null,
@@ -119,18 +126,33 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
             $scope.firstTimeAssessingStuff();
         };
 
+        $scope.assessOfferIgnore = function () {
+            $scope.rating = -1;
+            $scope.firstTimeAssessingStuff();
+        };
+
         $scope.firstTimeAssessingStuff = function () {
-            $scope.numberOfAssessedOffers++;
-            $scope.productPreferences.offers.push({
+            var assessedOffer = {
                 title: $scope.productToAssess.title,
                 imgUrl: $scope.productToAssess.imgUrl,
                 url: $scope.productToAssess.url,
                 price: $scope.productToAssess.price,
                 feedback: $scope.rating
-            });
+            };
+
+            if (assessedOffer.feedback === 1) {
+                $scope.numberOfGoodOffers++;
+                $scope.assessedOffers.good.push(assessedOffer);
+            } else if (assessedOffer.feedback === 0) {
+                $scope.numberOfBadOffers++;
+                $scope.assessedOffers.bad.push(assessedOffer);
+            } else
+                $scope.assessedOffers.ignored.push(assessedOffer);
 
 
-            if ($scope.numberOfAssessedOffers >= $scope.NUMBER_OF_OFFERS_TO_ASSESS) {
+            if ($scope.numberOfGoodOffers >= $scope.NUMBER_OF_OFFERS_TO_ASSESS &&
+                $scope.numberOfBadOffers >= $scope.NUMBER_OF_OFFERS_TO_ASSESS
+            ) {
                 $scope.currentMode = $scope.MODE_GETTING_EMAIL;
             } else {
                 $scope.loadNextProductToAssess();
@@ -176,6 +198,16 @@ app.controller('OfferCRUDCtrl', ['$scope','OfferCRUDService',
                 email: $scope.emailAddress,
                 query: $scope.query
             };
+
+            var goodLen = $scope.assessedOffers.good.length;
+            var badLen = $scope.assessedOffers.bad.length;
+            var min = goodLen < badLen ? goodLen : badLen;
+
+            $scope.productPreferences.offers = $scope.assessedOffers.good.slice(0, min).concat(
+                    $scope.assessedOffers.bad.slice(0, min));
+
+            $scope.assessedOffers.good = $scope.assessedOffers.good.slice(min);
+            $scope.assessedOffers.bad = $scope.assessedOffers.bad.slice(min);
 
             OfferCRUDService.sendProductPreferences($scope.productPreferences).then(function success(response){
                     $scope.message = 'Product preferences sent!';
